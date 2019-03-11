@@ -8,6 +8,7 @@
 
 body {
 	background-color: #1A8CDE;
+	transition: background-color 0.5s ease;
 }
 
 #container {
