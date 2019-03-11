@@ -1,8 +1,7 @@
 * {	
 	color: #ffffff;
-	font-family: 'Josefin Sans', sans-serif;	
-	font-weight: normal;
-	letter-spacing: -1px;
+	font-family: 'Raleway', sans-serif;	
+	font-weight: normal;	
 	margin: 0;
 	padding: 0;
 }
@@ -18,9 +17,9 @@ body {
 
 h1 {
 	font-size: 90pt;
-	margin: 50px 0 0 0;
+	margin: 20px 0 0 0;
 	width: 600px;
-	letter-spacing: -5px;
+	font-weight: bold;
 }
 
 span#event {
@@ -30,17 +29,21 @@ span#event {
 
 span#date {
 	display: block;
-	font-size: 32pt;
+	font-size: 16pt;
 	margin: 100px 0 0 0;	
 }
 
 span#address {	
 	display: block;
-	font-size: 14pt;
+	font-size: 16pt;
 	font-weight: thin;
 	margin: 16px 0 0 0;
 	letter-spacing: 0px;
-	font-family: 'Open Sans';
 	color: #084672;
+}
 
+a {
+	font-weight: bold;	
+	text-decoration: underline;
+	cursor: pointer;
 }
