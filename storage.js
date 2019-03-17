@@ -12,7 +12,7 @@ var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PA
   },
     // Security note: the database is saved to the file `database.sqlite` on the local filesystem. It's deliberately placed in the `.data` directory
     // which doesn't get copied if someone remixes the project.
-  storage: '.data/database.sqlite'
+  storage: process.env.ENV === 'development' ? './database.sqlite' : '.data/database.sqlite'
 });
 
 
@@ -38,14 +38,16 @@ sequelize.authenticate()
       }
     });
     
-     // createDB();
+    if (process.env.ENV === 'development' || process.env.RECREATE_DATABASE) {
+      recreateDatabase()
+    }
   })
   .catch(function (err) {
     console.log('Unable to connect to the database: ', err);
   });
 
 
-const createDB = () => {
+const recreateDatabase = () => {
   Tweets.sync({ force: true }) // We use 'force: true' in this example to drop the table users if it already exists, and create a new one. You'll most likely want to remove this setting in your own apps
 }
 

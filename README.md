@@ -23,7 +23,7 @@ develop locally, commit your code and do a `git push`.
 1. `git clone https://github.com/chazzdesign/futures-poster`
 2. Execute `yarn install`
 3. Create a ``.env` file with the credentials (see `env.sample`)
-4. Run the project with `node server.js`
+4. Run the project with `ENV=development node server.js`
 
 #### The following times:
 
