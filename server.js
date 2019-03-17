@@ -68,7 +68,7 @@ app.get('/api/delete/future/:id', deleteTweet)
 
 app.post('/git', (req, res) => {
 
-  let hmac = crypto.createHmac("sha1", process.env.SECRET);
+  let hmac = crypto.createHmac("sha1", process.env.HOOK_SECRET);
   let sig  = "sha1=" + hmac.update(JSON.stringify(req.body)).digest("hex");
 
   if (req.headers['x-github-event'] == "push" && sig == req.headers['x-hub-signature']) {
