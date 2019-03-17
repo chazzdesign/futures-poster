@@ -46,7 +46,9 @@ const createTwitter = () => {
 
     if (result && result[2]) {
       try { 
-        let sentences = Tokenizer.tokenize(result[2])
+
+        let tweet = result[2].replace('https://t.', '')
+        let sentences = Tokenizer.tokenize(tweet)
 
         let tweetID = status.id
         let username = status.user.screen_name
