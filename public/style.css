@@ -1,71 +1,58 @@
-/* styles */
-/* called by your view template */
-
-* {
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;	
+  font-weight: normal;	
+  background-color: #1A8CDE;
+  transition: background-color 0.5s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased; 
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
+.Container {
+  width: 800px;
+  margin: 100px auto;
 }
 
-.bold {
+.Title {
+  font-size: 90pt;
+  margin: 20px 0 0 0;
   font-weight: bold;
 }
 
-p {
-  max-width: 600px;
+.Event {
+  font-size: 24pt;
+  color: #084672;
 }
 
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
-}
-
-input {
+.Date {
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
+  font-size: 16pt;
+  margin: 100px 0 0 0;	
 }
 
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
+.Address {	
+  display: block;
+  font-size: 16pt;
+  font-weight: thin;
+  margin: 16px 0 0 0;
+  letter-spacing: 0px;
+  color: #084672;
+}
+
+.Button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-size: 90pt;
+  font-weight: bold;	
+  text-decoration: underline;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: yellow;
-}
-
-button:active {
-  box-shadow: none;
-}
-
-li {
-  margin-bottom: 5px;
-}
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
+  outline: none;
 }
