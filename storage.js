@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize')
 
-console.log(process.env)
+console.log('test', process.env)
 
 let Tweets
 
