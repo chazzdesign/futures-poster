@@ -3,7 +3,6 @@ const app = express()
 const cmd = require('node-cmd')
 const crypto = require('crypto')
 
-
 const Storage = require('./storage')
 const Twitter = require('./twitter')
 
@@ -68,20 +67,21 @@ app.get('/api/delete/future/:id', deleteTweet)
 
 app.post('/git', (req, res) => {
 
-  let hmac = crypto.createHmac("sha1", process.env.HOOK_SECRET);
-  let sig  = "sha1=" + hmac.update(JSON.stringify(req.body)).digest("hex");
+  let hmac = crypto.createHmac('sha1', process.env.HOOK_SECRET)
+  let sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
 
-  if (req.headers['x-github-event'] == "push" && sig == req.headers['x-hub-signature']) {
-    cmd.run('chmod 777 ./git.sh'); /* :/ Fix no perms after updating */
+  if (req.headers['x-github-event'] == 'push' && sig == req.headers['x-hub-signature']) {
+    cmd.run('chmod 777 ./git.sh') 
     cmd.get('./git.sh', (err, data) => {  // Run our script
-      if (data) console.log(data);
-      if (err) console.log(err);
-    });
-    cmd.run('refresh');  // Refresh project
+      if (data) console.log(data)
+      if (err) console.log(err)
+    })
+
+    cmd.run('refresh')
   }
 
-  return res.sendStatus(200); // Send back OK status
-});
+  return res.sendStatus(200)
+})
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)
