@@ -1,7 +1,5 @@
 var Sequelize = require('sequelize')
 
-console.log('test', process.env)
-
 let Tweets
 
 var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PASS, {
