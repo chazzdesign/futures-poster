@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cmd = require('node-cmd')
+const crypto = require('crypto')
 
 
 const Storage = require('./storage')
@@ -12,7 +13,7 @@ const fetchTweets = (request, response) => {
   if (request.query.secret !== SECRET) {
     return
   }
-  
+
   try {
     Twitter.getTweets()
     response.json({ ok: true })
@@ -41,9 +42,9 @@ const deleteTweet = (request, response) => {
   if (request.query.secret !== SECRET) {
     return
   }
-  
+
   let id = +request.params.id
-  
+
   Storage.deleteTweetByID(id).then((tweet) => {
     console.log(tweet)
     response.json(tweet)
@@ -66,7 +67,11 @@ app.get('/api/delete/future/:id', deleteTweet)
 
 
 app.post('/git', (req, res) => {
-  if (req.headers['x-github-event'] == "push") {
+
+  let hmac = crypto.createHmac("sha1", process.env.SECRET);
+  let sig  = "sha1=" + hmac.update(JSON.stringify(req.body)).digest("hex");
+
+  if (req.headers['x-github-event'] == "push" && sig == req.headers['x-hub-signature']) {
     cmd.get('./git.sh', (err, data) => {  // Run our script
       if (data) console.log(data);
       if (err) console.log(err);
