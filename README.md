@@ -6,10 +6,32 @@ The Future Is
 
 ### How to update project
 
-1. Don't update the project on the glitch editor, use always the Github repo.
-2. git clone https://github.com/chazzdesign/futures-poster
-3. Edit the project locally
-4. git push will update the code on glitch
+This project contains a Github webhook that is triggered every time a `git
+push` is made on your local computer. 
+
+Whenever a new push is made, the weebhook will ping the Glitch
+server both updating the code and refreshing the app. 
+
+This means that you don't need to update the project on the Glitch editor, just
+develop locally, commit your code and do a `git push`.
+
+
+### How to install the project locally
+
+#### The first time:
+
+1. git clone https://github.com/chazzdesign/futures-poster
+2. Execute `yarn install`
+3. Create a .env file with the credentials (see `env.sample`)
+4. Run the project with `node server.js`
+
+#### The following times:
+
+1. Edit the project locally
+2. git add .
+3. git commit -m 'Code updated'
+4. git push 
+
 
 ### Endpoints
 
