@@ -22,7 +22,7 @@ const request = () => {
 }
 
 const changeText = () => {
-  currentBackground = (currentBackground + 1) % (backgrounds.length - 1)
+  currentBackground = (currentBackground + 1) % (backgrounds.length)
   document.body.style.backgroundColor = backgrounds[currentBackground]
   request()  
 }
