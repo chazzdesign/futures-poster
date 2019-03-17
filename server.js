@@ -60,17 +60,7 @@ const showHome = (request, response) => {
   response.sendFile(__dirname + '/views/index.html')
 }
 
-app.use(express.static('public'))
-app.use(bodyParser.json())
-
-app.get('/', showHome)
-app.get('/api/fetch', fetchTweets)
-app.get('/api/future', getRandomTweet)
-app.get('/api/futures', getAllTweets)
-app.get('/api/delete/future/:id', deleteTweet)
-
-
-app.post('/git', (req, res) => {
+const onWebhook = (req, res) => {
 
   let hmac = crypto.createHmac('sha1', process.env.HOOK_SECRET)
   let sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
@@ -86,7 +76,18 @@ app.post('/git', (req, res) => {
   }
 
   return res.sendStatus(200)
-})
+}
+
+app.use(express.static('public'))
+app.use(bodyParser.json())
+
+app.get('/', showHome)
+app.get('/api/fetch', fetchTweets)
+app.get('/api/future', getRandomTweet)
+app.get('/api/futures', getAllTweets)
+app.get('/api/delete/future/:id', deleteTweet)
+
+app.post('/git', onWebhook)
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)
