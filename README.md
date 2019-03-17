@@ -21,6 +21,9 @@ server both updating the code and refreshing the app.
 2. Execute `yarn install`
 3. Create a `.env` file with the credentials (see `env.sample`)
 4. Run the project with `ENVIRONMENT=development node server.js`
+5. The terminal will show the port you need to use (eg: `Your app is listening on port 49922`)
+6. Open `localhost:PORT` in a browser 
+7. The first time, fetch some tweets with `localhost:PORT/api/fetch?secret=SECRET`
 
 #### The following times:
 
