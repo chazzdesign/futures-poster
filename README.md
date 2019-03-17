@@ -44,6 +44,6 @@ server both updating the code and refreshing the app.
 - [future.chazzdesign.com/api/futures](http://future.chazzdesign.com/api/futures): show all the tweets
 
 
-## Next steps:
+### Updating
 
-- Use cron-job.org to ping the secret fetch URL every X minutes.
+This project is autoupdated every 10 minutes using [cron-job.org](https://cron-job.org).
