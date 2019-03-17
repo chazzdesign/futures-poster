@@ -25,9 +25,9 @@ server both updating the code and refreshing the app.
 #### The following times:
 
 1. Edit the project locally
-2. git add .
-3. git commit -m 'Code updated'
-4. git push 
+2. `git add .`
+3. `git commit -m 'Code updated'`
+4. `git push`
 
 
 ### Endpoints
