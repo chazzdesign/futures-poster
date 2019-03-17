@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const cmd = require('node-cmd')
 const crypto = require('crypto')
+const bodyParser = require('body-parser')
+
 
 const Storage = require('./storage')
 const Twitter = require('./twitter')
@@ -57,6 +59,7 @@ const showHome = (request, response) => {
 }
 
 app.use(express.static('public'))
+app.use(bodyParser.json())
 
 app.get('/', showHome)
 app.get('/api/fetch', fetchTweets)
