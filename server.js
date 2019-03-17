@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const cmd = require('node-cmd')
+
 
 const Storage = require('./storage')
 const Twitter = require('./twitter')
@@ -61,6 +63,19 @@ app.get('/api/fetch', fetchTweets)
 app.get('/api/future', getRandomTweet)
 app.get('/api/futures', getAllTweets)
 app.get('/api/delete/future/:id', deleteTweet)
+
+
+app.post('/git', (req, res) => {
+  if (req.headers['x-github-event'] == "push") {
+    cmd.get('./git.sh', (err, data) => {  // Run our script
+      if (data) console.log(data);
+      if (err) console.log(err);
+    });
+    cmd.run('refresh');  // Refresh project
+  }
+
+  return res.sendStatus(200); // Send back OK status
+});
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)

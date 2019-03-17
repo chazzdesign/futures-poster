@@ -10,14 +10,15 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "twit": "^2.2.11",
-    "natural": "^0.6.3",
     "airtable": "^0.5.9",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "natural": "^0.6.3",
+    "node-cmd": "^3.0.0",
     "sequelize": "^5.1.0",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "twit": "^2.2.11"
   },
   "engines": {
     "node": "8.x"
