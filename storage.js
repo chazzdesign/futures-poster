@@ -1,6 +1,7 @@
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize')
+console.log(process.env)
 
-let Tweets;
+let Tweets
 
 var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PASS, {
   host: '0.0.0.0',
@@ -13,12 +14,12 @@ var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PA
     // Security note: the database is saved to the file `database.sqlite` on the local filesystem. It's deliberately placed in the `.data` directory
     // which doesn't get copied if someone remixes the project.
   storage: process.env.ENV === 'development' ? './database.sqlite' : '.data/database.sqlite'
-});
+})
 
 
 sequelize.authenticate()
   .then(function(err) {
-    console.log('Connection has been established successfully.');
+    console.log('Connection has been established successfully.')
     
    Tweets = sequelize.define('tweets', {
       id: {
@@ -36,15 +37,15 @@ sequelize.authenticate()
       username: {
         type: Sequelize.STRING
       }
-    });
+    })
     
     if (process.env.ENV === 'development' || process.env.RECREATE_DATABASE) {
       recreateDatabase()
     }
   })
   .catch(function (err) {
-    console.log('Unable to connect to the database: ', err);
-  });
+    console.log('Unable to connect to the database: ', err)
+  })
 
 
 const recreateDatabase = () => {
