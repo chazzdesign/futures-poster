@@ -7,10 +7,8 @@ Digital poster for the Madrid Speculative Futures meetup. The poster grabs tweet
 
 ### How to update this project
 
-- This project contains a Github webhook that is triggered every time a `git
-push` is made on your local computer. 
-- Whenever you push some code, the weebhook will ping the Glitch
-server updating the code and refreshing the app.
+- This project contains a Github webhook that is triggered every time a `git push` is made on your local computer. 
+- Whenever you push some code, the weebhook will ping the Glitch server updating the code and refreshing the app.
 - This means that **you don't need to update the project on the Glitch editor, just develop locally, commit your code and do a `git push`.**
 - If you edit the code in Glitch and the update the code in Github, the code in Glitch will be lost.
 
@@ -18,7 +16,7 @@ server updating the code and refreshing the app.
 
 #### The first time:
 
-1. `git clone https://github.com/chazzdesign/futures-poster`
+1. `git clone git@github.com:chazzdesign/futures-poster.git`
 2. Execute `yarn` (or `npm install`)
 3. Create an `.env` file with the credentials (see `env.sample`)
 4. Run the project with `ENVIRONMENT=development node server.js`
