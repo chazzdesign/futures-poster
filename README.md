@@ -6,14 +6,11 @@ The Future Is
 
 ### How to update project
 
-This project contains a Github webhook that is triggered every time a `git
+- This project contains a Github webhook that is triggered every time a `git
 push` is made on your local computer. 
-
-Whenever a new push is made, the weebhook will ping the Glitch
+- Whenever a new push is made, the weebhook will ping the Glitch
 server both updating the code and refreshing the app. 
-
-This means that you don't need to update the project on the Glitch editor, just
-develop locally, commit your code and do a `git push`.
+- This means that **you don't need to update the project on the Glitch editor, just develop locally, commit your code and do a `git push`.**
 
 
 ### How to install the project locally
