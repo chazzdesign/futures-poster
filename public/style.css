@@ -22,6 +22,14 @@ a {
   margin: 100px auto;
 }
 
+
+#Tweet {
+  display: block;
+  font-size: 18pt;
+  margin: 20px 0 0 0;
+}
+
+
 .Title {
   font-size: 90pt;
   margin: 20px 0 0 0;
@@ -40,7 +48,7 @@ a {
 }
 
 .Talk a {
-  
+
 }
 
 .Date {
