@@ -28,7 +28,7 @@ sequelize.authenticate()
         type: Sequelize.INTEGER
       },
       hidden: {
-        default: false,
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       tweetID: {
@@ -42,9 +42,9 @@ sequelize.authenticate()
       }
     })
 
-    if (process.env.ENVIRONMENT === 'development') {
+    //if (process.env.ENVIRONMENT === 'development') {
       recreateDatabase()
-    }
+    //}
   })
   .catch(function (err) {
     console.log('Unable to connect to the database: ', err)
@@ -58,11 +58,12 @@ const recreateDatabase = () => {
 const createStorage = () => {
  
   const store = ({ tweetID, message, username }) => {
-    return Tweets.create({ tweetID, message, username})
+    let hidden = false
+    return Tweets.create({ tweetID, message, username, hidden })
   }
   
   const getTweet = () => {
-    return Tweets.findOne({ where: { hidden: null }, order: [sequelize.fn('RANDOM')] })
+    return Tweets.findOne({ where: { hidden: false }, order: [sequelize.fn('RANDOM')] })
   }
   
   const getTweets = () => {
