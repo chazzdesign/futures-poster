@@ -15,7 +15,7 @@ const getTweet = (callback) => {
         }
         $future.innerHTML = response.message
         console.log(response)
-        document.getElementById("tweet").innerHTML = "("+response.username+")"
+        document.getElementById("Tweet").innerHTML = "("+response.username+")"
       }
     } else {
       console.log('The request failed!')
