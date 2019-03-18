@@ -29,7 +29,6 @@ a {
   margin: 20px 0 0 0;
 }
 
-
 .Title {
   font-size: 90pt;
   margin: 20px 0 0 0;
@@ -79,7 +78,7 @@ a {
   color: #fff;
   display: inline-block;
   font-size: 90pt;
-  font-weight: bold;	
+  font-weight: normal;	
   text-decoration: underline;
   cursor: pointer;
   outline: none;
