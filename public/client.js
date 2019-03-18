@@ -14,6 +14,8 @@ const getTweet = (callback) => {
           callback()
         }
         $future.innerHTML = response.message
+        console.log(response)
+
       }
     } else {
       console.log('The request failed!')
