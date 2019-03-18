@@ -6,7 +6,6 @@ const cmd = require('node-cmd')
 const crypto = require('crypto')
 const bodyParser = require('body-parser')
 
-
 const Storage = require('./storage')
 const Twitter = require('./twitter')
 
@@ -41,6 +40,20 @@ const getAllTweets = (request, response) => {
   })
 }
 
+const hideTweet = (request, response) => {
+  if (request.query.secret !== SECRET) {
+    return
+  }
+
+  let id = +request.params.id
+
+  Storage.hideTweetByID(id).then((tweet) => {
+    response.json(tweet)
+  }).catch((error) => {
+    throw new Error(error)
+  })
+}
+
 const deleteTweet = (request, response) => {
   if (request.query.secret !== SECRET) {
     return
@@ -49,7 +62,6 @@ const deleteTweet = (request, response) => {
   let id = +request.params.id
 
   Storage.deleteTweetByID(id).then((tweet) => {
-    console.log(tweet)
     response.json(tweet)
   }).catch((error) => {
     throw new Error(error)
@@ -63,13 +75,19 @@ const showHome = (request, response) => {
 const onWebhook = (req, res) => {
 
   let hmac = crypto.createHmac('sha1', process.env.HOOK_SECRET)
-  let sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
+  let sig  = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`
 
   if (req.headers['x-github-event'] == 'push' && sig == req.headers['x-hub-signature']) {
     cmd.run('chmod 777 ./git.sh') 
-    cmd.get('./git.sh', (err, data) => {  // Run our script
-      if (data) console.log(data)
-      if (err) console.log(err)
+
+    cmd.get('./git.sh', (err, data) => {
+      if (data) {
+        console.log(data)
+      }
+
+      if (err) {
+        console.log(err)
+      }
     })
 
     cmd.run('refresh')
@@ -86,7 +104,7 @@ app.get('/api/fetch', fetchTweets)
 app.get('/api/future', getRandomTweet)
 app.get('/api/futures', getAllTweets)
 app.get('/api/delete/future/:id', deleteTweet)
-
+app.get('/api/hide/future/:id', hideTweet)
 app.post('/git', onWebhook)
 
 const listener = app.listen(process.env.PORT, () => {

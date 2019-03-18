@@ -20,14 +20,18 @@ sequelize.authenticate()
   .then(function(err) {
     console.log('Connection has been established successfully.')
     
-   Tweets = sequelize.define('tweets', {
+    Tweets = sequelize.define('tweets', {
       id: {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-     tweetID: {
+      hidden: {
+        default: false,
+        type: Sequelize.BOOLEAN
+      },
+      tweetID: {
         type: Sequelize.INTEGER
       },
       message: {
@@ -37,7 +41,7 @@ sequelize.authenticate()
         type: Sequelize.STRING
       }
     })
-    
+
     if (process.env.ENVIRONMENT === 'development') {
       recreateDatabase()
     }
@@ -58,7 +62,7 @@ const createStorage = () => {
   }
   
   const getTweet = () => {
-    return Tweets.findOne({ order: [sequelize.fn('RANDOM')] })
+    return Tweets.findOne({ where: { hidden: null }, order: [sequelize.fn('RANDOM')] })
   }
   
   const getTweets = () => {
@@ -69,6 +73,10 @@ const createStorage = () => {
     return Tweets
   }
   
+  const hideTweetByID = (id) => {
+    return Tweets.update({ hidden: true }, { where: { id } })
+  }
+  
   const deleteTweetByID = (id) => {
     return Tweets.destroy({ where: { id },  force: true })
   }
@@ -77,7 +85,8 @@ const createStorage = () => {
     store,
     getTweet,
     getTweets,
-    deleteTweetByID
+    deleteTweetByID,
+    hideTweetByID
   }
 }
 
