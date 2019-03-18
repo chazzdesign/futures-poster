@@ -42,9 +42,9 @@ sequelize.authenticate()
       }
     })
 
-    //if (process.env.ENVIRONMENT === 'development') {
+    if (process.env.ENVIRONMENT === 'development') {
       recreateDatabase()
-    //}
+    }
   })
   .catch(function (err) {
     console.log('Unable to connect to the database: ', err)
