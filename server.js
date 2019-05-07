@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const cmd = require('node-cmd')
 const crypto = require('crypto')
@@ -99,20 +100,9 @@ const onWebhook = (req, res) => {
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
-
-  if ('OPTIONS' === req.method) {
-    res.send(200)
-  } else {
-    next()
-  }
-})
-
 app.get('/', showHome)
 app.get('/api/fetch', fetchTweets)
-app.get('/api/future', getRandomTweet)
+app.get('/api/future', cors(), getRandomTweet)
 app.get('/api/futures', getAllTweets)
 app.get('/api/delete/future/:id', deleteTweet)
 app.get('/api/hide/future/:id', hideTweet)
