@@ -81,6 +81,15 @@ const createStorage = () => {
   const deleteTweetByID = (id) => {
     return Tweets.destroy({ where: { id },  force: true })
   }
+
+  const updateTweet = (data) => {
+    return Tweets.findOne({ 
+      where: { id: data.id } 
+    }).then((tweet) => {
+      return tweet.update(data)
+    })
+  }
+
   
   return {
     store,

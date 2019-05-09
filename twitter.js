@@ -53,8 +53,9 @@ const createTwitter = () => {
         let tweetID = status.id
         let username = status.user.screen_name
         let message = sentences[0].trim()
+        let containsHashTags = message.includes('#')
 
-        if (message) {
+        if (message && !containsHashTags && message.length < 140) {
           Storage.store({ tweetID, message, username })
             .catch((e) => {
               // console.log(e)
