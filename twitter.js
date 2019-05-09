@@ -11,7 +11,7 @@ const T = new Twit({
 })
 
 const CONFIG = {
-  QUERY: 'the future is',
+  QUERY: 'design is',
   DEFAULT_LANGUAGE: 'en',
   TWEET_COUNT: 100,
   TWEET_MODE: 'extended'
@@ -47,27 +47,50 @@ const createTwitter = () => {
     if (result && result[2]) {
       try { 
 
-        let tweet = result[2].replace('https://t.', '')
+        let tweet = result[2]
+
         let sentences = Tokenizer.tokenize(tweet)
 
         let tweetID = status.id
         let username = status.user.screen_name
+        let publishedAt = new Date(Date.parse(status.created_at)).getTime()
         let message = sentences[0].trim()
-        let containsHashTags = message.includes('#')
 
-        if (message && !containsHashTags && message.length < 140) {
-          Storage.store({ tweetID, message, username })
+        if (status.possibly_sensitive || message.includes('http')) {
+          return
+        }
+
+        let removeUsernamesReg = new RegExp('/(\s+|^)@\S+/', 'g')
+        message = message.replace(removeUsernamesReg, '')
+
+        let removeHashtags = new RegExp('/(\s+|^)#\S+/', 'g')
+        message = message.replace(removeHashtags, '')
+
+        if (message && message.length < 200) {
+          Storage.store({ tweetID, message, username, publishedAt })
             .catch((e) => {
               // console.log(e)
             })
         }
       } catch (e) {
-        console.log(e)
+        console.log(result[2])
+        console.log('Error', e)
       }
     }
   }
 
+  const updateTweets = () => {
+    return Storage.getTweets().then((tweets) => {
+      tweets.forEach((tweet) => {
+      console.log(tweet)
+        updateTweet(tweet)
+      })
+    })
+  }
+
+
   return {
+    updateTweets,
     getTweets
   }
 }

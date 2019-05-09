@@ -32,10 +32,14 @@ sequelize.authenticate()
         type: Sequelize.BOOLEAN
       },
       tweetID: {
+        unique: true,
         type: Sequelize.INTEGER
       },
       message: {
         type: Sequelize.STRING
+      },
+      publishedAt: {
+        type: 'TIMESTAMP'
       },
       username: {
         type: Sequelize.STRING

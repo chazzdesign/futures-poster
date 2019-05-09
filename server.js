@@ -107,6 +107,13 @@ app.get('/api/futures', getAllTweets)
 app.get('/api/delete/future/:id', deleteTweet)
 app.get('/api/hide/future/:id', hideTweet)
 app.post('/git', onWebhook)
+app.post('/update', onRequestUpdate)
+
+async function onRequestUpdate (request, response) {
+  await Tweet.updateTweets().then((result) => {
+    response.json(result)
+  })
+}
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)
