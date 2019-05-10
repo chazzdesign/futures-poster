@@ -110,7 +110,7 @@ app.post('/git', onWebhook)
 app.post('/update', onRequestUpdate)
 
 async function onRequestUpdate (request, response) {
-  await Tweet.updateTweets().then((result) => {
+  await Twitter.updateTweets().then((result) => {
     response.json(result)
   })
 }

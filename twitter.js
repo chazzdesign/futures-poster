@@ -11,7 +11,7 @@ const T = new Twit({
 })
 
 const CONFIG = {
-  QUERY: 'design is',
+  QUERY: 'the future is',
   DEFAULT_LANGUAGE: 'en',
   TWEET_COUNT: 100,
   TWEET_MODE: 'extended'
