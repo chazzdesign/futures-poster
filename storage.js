@@ -39,7 +39,7 @@ sequelize.authenticate()
         type: Sequelize.STRING
       },
       publishedAt: {
-        type: 'TIMESTAMP'
+        type: Sequelize.DATE
       },
       username: {
         type: Sequelize.STRING
@@ -61,9 +61,9 @@ const recreateDatabase = () => {
 
 const createStorage = () => {
  
-  const store = ({ tweetID, message, username }) => {
+  const store = ({ tweetID, message, username, publishedAt }) => {
     let hidden = false
-    return Tweets.create({ tweetID, message, username, hidden })
+    return Tweets.create({ tweetID, message, username, hidden, publishedAt })
   }
   
   const getTweet = () => {

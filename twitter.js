@@ -53,7 +53,7 @@ const createTwitter = () => {
 
         let tweetID = status.id
         let username = status.user.screen_name
-        let publishedAt = new Date(Date.parse(status.created_at)).getTime()
+        let publishedAt = status.created_at
         let message = sentences[0].trim()
 
         if (status.possibly_sensitive || message.includes('http')) {
