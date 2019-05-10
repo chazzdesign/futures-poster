@@ -60,13 +60,15 @@ const createTwitter = () => {
           return
         }
 
-        let removeUsernamesReg = new RegExp('/(\s+|^)@\S+/', 'g')
+        let removeUsernamesReg = new RegExp('@([^\\s]*)','g')
         message = message.replace(removeUsernamesReg, '')
 
-        let removeHashtags = new RegExp('/(\s+|^)#\S+/', 'g')
+        let removeHashtags = new RegExp('#([^\\s]*)','g')
         message = message.replace(removeHashtags, '')
 
-        if (message && message.length < 200) {
+        message = message.replace(/\s+/g,' ')
+
+        if (message && message.length < 170) {
           Storage.store({ tweetID, message, username, publishedAt })
             .catch((e) => {
               // console.log(e)
